@@ -1,0 +1,206 @@
+import React, { useState, useEffect } from 'react';
+import { Github, Linkedin, Mail, Phone, ChevronDown } from 'lucide-react';
+
+const Portfolio = () => {
+  const [activeTab, setActiveTab] = useState('about');
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const experience = [
+    {
+      title: "Laravel Developer",
+      company: "ITempire Software House",
+      period: "Mar 2023 - Present",
+      responsibilities: [
+        "Developed real-time real estate management system with lead generation",
+        "Created student management system's leave module",
+        "Designed and developed company website",
+        "Built RESTful APIs for various applications"
+      ]
+    },
+    {
+      title: "Core PHP Developer",
+      company: "WBX Technologies",
+      period: "Oct 2021 - Mar 2023",
+      responsibilities: [
+        "Developed and maintained ERP and POS systems",
+        "Ensured robust performance and seamless functionality"
+      ]
+    }
+  ];
+
+  const skills = [
+    { category: "Languages", items: ["PHP", "JavaScript", "HTML", "CSS"] },
+    { category: "Frameworks", items: ["Laravel", "Vue.js", "jQuery"] },
+    { category: "Tools", items: ["Git", "Composer", "RESTful APIs"] },
+    { category: "Other", items: ["Agile Development", "Project Management", "Team Collaboration"] }
+  ];
+
+  const projects = [
+    {
+      title: "Real Estate Management System",
+      description: "Comprehensive real-time system with lead generation and property management. Integrated Google Forms, Google Ads, and WordPress.",
+      tags: ["Laravel", "APIs", "Third-party Integration"]
+    },
+    {
+      title: "Wallet Web Application",
+      description: "Secure transaction management system with robust user data protection",
+      tags: ["PHP", "Security", "Web Development"]
+    },
+    {
+      title: "Technical Services Website",
+      description: "User-friendly interface with reliable backend functionalities",
+      tags: ["Frontend", "Backend", "UI/UX"]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Hero Section with Profile */}
+      <div className="relative h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 overflow-hidden">
+        <div className={`text-center transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className="relative w-48 h-48 mx-auto mb-8 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
+            <img 
+              src="/your-image-path.jpg" 
+              alt="Muhammad Qasim"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <h1 className="text-5xl font-bold text-white mb-4">Muhammad Qasim</h1>
+          <p className="text-xl text-blue-100 mb-8">Full Stack Laravel Developer</p>
+          <div className="flex justify-center space-x-4 mb-12">
+            <a href="https://github.com/yourusername" className="text-white hover:text-blue-200 transition-colors">
+              <Github className="h-8 w-8" />
+            </a>
+            <a href="https://www.linkedin.com/in/muhammad-qasim-dogar-b9577a214" className="text-white hover:text-blue-200 transition-colors">
+              <Linkedin className="h-8 w-8" />
+            </a>
+          </div>
+          <ChevronDown className="h-8 w-8 text-white animate-bounce mx-auto cursor-pointer" 
+            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })} 
+          />
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <nav className="sticky top-0 bg-white/80 backdrop-blur-md shadow-sm z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center space-x-8">
+            {['about', 'experience', 'projects', 'skills'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`${
+                  activeTab === tab
+                    ? 'border-blue-500 text-gray-900'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                } px-3 py-4 text-sm font-medium border-b-2 uppercase transition-all duration-300`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        {/* About Section */}
+        {activeTab === 'about' && (
+          <div className="bg-white/80 backdrop-blur-md shadow-lg rounded-lg p-8 transform transition-all duration-500 hover:scale-[1.02]">
+            <h2 className="text-3xl font-bold mb-6 text-gray-900">About Me</h2>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Experienced Laravel and Core PHP Developer with over 3 years in the industry. 
+              Proficient in developing ERP and POS systems, Real Estate Management software, 
+              and various web applications. Strong background in both backend and frontend development.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-6">
+              <div className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+                <Mail className="h-6 w-6 mr-2" />
+                <span>qasimdogar077@gmail.com</span>
+              </div>
+              <div className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+                <Phone className="h-6 w-6 mr-2" />
+                <span>+923123129806</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Experience Section */}
+        {activeTab === 'experience' && (
+          <div className="space-y-8">
+            {experience.map((exp, index) => (
+              <div 
+                key={index} 
+                className="bg-white/80 backdrop-blur-md shadow-lg rounded-lg p-8 transform transition-all duration-500 hover:scale-[1.02]"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <h3 className="text-2xl font-bold text-gray-900">{exp.title}</h3>
+                <p className="text-blue-600 mb-4">{exp.company} | {exp.period}</p>
+                <ul className="space-y-3">
+                  {exp.responsibilities.map((resp, idx) => (
+                    <li key={idx} className="text-gray-600 flex items-start">
+                      <span className="mr-2 text-blue-500">•</span>
+                      {resp}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Projects Section */}
+        {activeTab === 'projects' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div 
+                key={index} 
+                className="bg-white/80 backdrop-blur-md shadow-lg rounded-lg p-6 transform transition-all duration-500 hover:scale-[1.05]"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                <p className="text-gray-600 mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag, idx) => (
+                    <span key={idx} className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Skills Section */}
+        {activeTab === 'skills' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {skills.map((skillGroup, index) => (
+              <div 
+                key={index} 
+                className="bg-white/80 backdrop-blur-md shadow-lg rounded-lg p-6 transform transition-all duration-500 hover:scale-[1.05]"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{skillGroup.category}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {skillGroup.items.map((skill, idx) => (
+                    <span key={idx} className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+    </div>
+  );
+};
+
+export default Portfolio;
