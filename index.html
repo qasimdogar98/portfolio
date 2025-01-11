@@ -329,7 +329,7 @@
             <h1>Muhammad Qasim</h1>
             <p>Full Stack Laravel Developer</p>
             <div class="social-links">
-                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/qasimdogar98" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/muhammad-qasim-dogar-b9577a214" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
@@ -464,7 +464,25 @@
     </main>
 
     <script>
-        // Navigation functionality
-        document.querySelectorAll('.nav-button').forEach(button => {
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.nav-button');
+        const sections = document.querySelectorAll('.section');
+
+        buttons.forEach(button => {
             button.addEventListener('click', () => {
-                // Update active button
+                // Remove 'active' class from all buttons and sections
+                buttons.forEach(btn => btn.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Add 'active' class to clicked button and corresponding section
+                button.classList.add('active');
+                document.getElementById(button.dataset.tab).classList.add('active');
+            });
+        });
+    });
+</script>
+<script>
+    document.querySelector('.scroll-indicator').addEventListener('click', () => {
+        document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
