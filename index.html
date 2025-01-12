@@ -38,22 +38,24 @@
             overflow: hidden;
         }
 
-        .profile-container {
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards;
-        }
+        
 
-        .profile-image {
-            width: 192px;
-            height: 192px;
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            object-fit: contain;
-        }
+        .profile-container {
+    text-align: center;
+    position: relative;
+    margin-top: 50px;
+}
+
+.profile-image {
+    width: 192px;
+    height: 192px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+}
 
         .hero h1 {
             color: white;
